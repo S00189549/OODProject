@@ -17,6 +17,14 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("ExerciseDatabaseModel", "FK_tbl_Exercises_ToBodyPart", "tbl_BodyPart", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(OOD_project.tbl_BodyPart), "tbl_Exercises", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OOD_project.tbl_Exercises), true)]
+[assembly: EdmRelationshipAttribute("ExerciseDatabaseModel", "FK_tbl_Workout_ToExercises", "tbl_Exercises", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(OOD_project.tbl_Exercises), "tbl_Workout", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OOD_project.tbl_Workout), true)]
+[assembly: EdmRelationshipAttribute("ExerciseDatabaseModel", "FK_tbl_Workout_ToProfile", "tbl_Profiles", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(OOD_project.tbl_Profiles), "tbl_Workout", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(OOD_project.tbl_Workout), true)]
+
+#endregion
+
 namespace OOD_project
 {
     #region Contexts
@@ -253,6 +261,32 @@ namespace OOD_project
 
         #endregion
 
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ExerciseDatabaseModel", "FK_tbl_Exercises_ToBodyPart", "tbl_Exercises")]
+        public EntityCollection<tbl_Exercises> tbl_Exercises
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tbl_Exercises>("ExerciseDatabaseModel.FK_tbl_Exercises_ToBodyPart", "tbl_Exercises");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tbl_Exercises>("ExerciseDatabaseModel.FK_tbl_Exercises_ToBodyPart", "tbl_Exercises", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -413,6 +447,70 @@ namespace OOD_project
 
         #endregion
 
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ExerciseDatabaseModel", "FK_tbl_Exercises_ToBodyPart", "tbl_BodyPart")]
+        public tbl_BodyPart tbl_BodyPart
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_BodyPart>("ExerciseDatabaseModel.FK_tbl_Exercises_ToBodyPart", "tbl_BodyPart").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_BodyPart>("ExerciseDatabaseModel.FK_tbl_Exercises_ToBodyPart", "tbl_BodyPart").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tbl_BodyPart> tbl_BodyPartReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_BodyPart>("ExerciseDatabaseModel.FK_tbl_Exercises_ToBodyPart", "tbl_BodyPart");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tbl_BodyPart>("ExerciseDatabaseModel.FK_tbl_Exercises_ToBodyPart", "tbl_BodyPart", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ExerciseDatabaseModel", "FK_tbl_Workout_ToExercises", "tbl_Workout")]
+        public EntityCollection<tbl_Workout> tbl_Workout
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tbl_Workout>("ExerciseDatabaseModel.FK_tbl_Workout_ToExercises", "tbl_Workout");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tbl_Workout>("ExerciseDatabaseModel.FK_tbl_Workout_ToExercises", "tbl_Workout", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -492,6 +590,32 @@ namespace OOD_project
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ExerciseDatabaseModel", "FK_tbl_Workout_ToProfile", "tbl_Workout")]
+        public EntityCollection<tbl_Workout> tbl_Workout
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tbl_Workout>("ExerciseDatabaseModel.FK_tbl_Workout_ToProfile", "tbl_Workout");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tbl_Workout>("ExerciseDatabaseModel.FK_tbl_Workout_ToProfile", "tbl_Workout", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -626,6 +750,86 @@ namespace OOD_project
         private global::System.Int32 _ProfileID;
         partial void OnProfileIDChanging(global::System.Int32 value);
         partial void OnProfileIDChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ExerciseDatabaseModel", "FK_tbl_Workout_ToExercises", "tbl_Exercises")]
+        public tbl_Exercises tbl_Exercises
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Exercises>("ExerciseDatabaseModel.FK_tbl_Workout_ToExercises", "tbl_Exercises").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Exercises>("ExerciseDatabaseModel.FK_tbl_Workout_ToExercises", "tbl_Exercises").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tbl_Exercises> tbl_ExercisesReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Exercises>("ExerciseDatabaseModel.FK_tbl_Workout_ToExercises", "tbl_Exercises");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tbl_Exercises>("ExerciseDatabaseModel.FK_tbl_Workout_ToExercises", "tbl_Exercises", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ExerciseDatabaseModel", "FK_tbl_Workout_ToProfile", "tbl_Profiles")]
+        public tbl_Profiles tbl_Profiles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Profiles>("ExerciseDatabaseModel.FK_tbl_Workout_ToProfile", "tbl_Profiles").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Profiles>("ExerciseDatabaseModel.FK_tbl_Workout_ToProfile", "tbl_Profiles").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tbl_Profiles> tbl_ProfilesReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Profiles>("ExerciseDatabaseModel.FK_tbl_Workout_ToProfile", "tbl_Profiles");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tbl_Profiles>("ExerciseDatabaseModel.FK_tbl_Workout_ToProfile", "tbl_Profiles", value);
+                }
+            }
+        }
 
         #endregion
 
