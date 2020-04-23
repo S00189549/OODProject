@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExerciseDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_BodyPart">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_Exercises" Relationship="Self.FK_tbl_Exercises_ToBodyPart" FromRole="tbl_BodyPart" ToRole="tbl_Exercises" />
+  </EntityType>
+  <EntityType Name="tbl_Exercises">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Reps" Type="Int32" Nullable="false" />
+    <Property Name="Sets" Type="Int32" Nullable="false" />
+    <Property Name="BodyPartID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_BodyPart" Relationship="Self.FK_tbl_Exercises_ToBodyPart" FromRole="tbl_Exercises" ToRole="tbl_BodyPart" />
+    <NavigationProperty Name="tbl_Workout" Relationship="Self.FK_tbl_Workout_ToExercises" FromRole="tbl_Exercises" ToRole="tbl_Workout" />
+  </EntityType>
+  <EntityType Name="tbl_Profiles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_Workout" Relationship="Self.FK_tbl_Workout_ToProfile" FromRole="tbl_Profiles" ToRole="tbl_Workout" />
+  </EntityType>
+  <EntityType Name="tbl_Workout">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="ExerciseID" Type="Int32" Nullable="false" />
+    <Property Name="SaveDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProfileID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Exercises" Relationship="Self.FK_tbl_Workout_ToExercises" FromRole="tbl_Workout" ToRole="tbl_Exercises" />
+    <NavigationProperty Name="tbl_Profiles" Relationship="Self.FK_tbl_Workout_ToProfile" FromRole="tbl_Workout" ToRole="tbl_Profiles" />
+  </EntityType>
+  <Association Name="FK_tbl_Exercises_ToBodyPart">
+    <End Role="tbl_BodyPart" Type="Self.tbl_BodyPart" Multiplicity="1" />
+    <End Role="tbl_Exercises" Type="Self.tbl_Exercises" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_BodyPart">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Exercises">
+        <PropertyRef Name="BodyPartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Workout_ToExercises">
+    <End Role="tbl_Exercises" Type="Self.tbl_Exercises" Multiplicity="1" />
+    <End Role="tbl_Workout" Type="Self.tbl_Workout" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Exercises">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Workout">
+        <PropertyRef Name="ExerciseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Workout_ToProfile">
+    <End Role="tbl_Profiles" Type="Self.tbl_Profiles" Multiplicity="1" />
+    <End Role="tbl_Workout" Type="Self.tbl_Workout" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Profiles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Workout">
+        <PropertyRef Name="ProfileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AdilsGymEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_BodyPart" EntityType="Self.tbl_BodyPart" />
+    <EntitySet Name="tbl_Exercises" EntityType="Self.tbl_Exercises" />
+    <EntitySet Name="tbl_Profiles" EntityType="Self.tbl_Profiles" />
+    <EntitySet Name="tbl_Workout" EntityType="Self.tbl_Workout" />
+    <AssociationSet Name="FK_tbl_Exercises_ToBodyPart" Association="Self.FK_tbl_Exercises_ToBodyPart">
+      <End Role="tbl_BodyPart" EntitySet="tbl_BodyPart" />
+      <End Role="tbl_Exercises" EntitySet="tbl_Exercises" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Workout_ToExercises" Association="Self.FK_tbl_Workout_ToExercises">
+      <End Role="tbl_Exercises" EntitySet="tbl_Exercises" />
+      <End Role="tbl_Workout" EntitySet="tbl_Workout" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Workout_ToProfile" Association="Self.FK_tbl_Workout_ToProfile">
+      <End Role="tbl_Profiles" EntitySet="tbl_Profiles" />
+      <End Role="tbl_Workout" EntitySet="tbl_Workout" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

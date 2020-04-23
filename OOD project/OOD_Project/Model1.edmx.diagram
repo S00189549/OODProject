@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="991b9582eb7446a0b1f8b756f70f8fb2" Name="Diagram1">
+        <EntityTypeShape EntityType="ExerciseDatabaseModel.tbl_BodyPart" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExerciseDatabaseModel.tbl_Exercises" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExerciseDatabaseModel.tbl_Profiles" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExerciseDatabaseModel.tbl_Workout" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ExerciseDatabaseModel.FK_tbl_Exercises_ToBodyPart" ManuallyRouted="false" />
+        <AssociationConnector Association="ExerciseDatabaseModel.FK_tbl_Workout_ToExercises" ManuallyRouted="false" />
+        <AssociationConnector Association="ExerciseDatabaseModel.FK_tbl_Workout_ToProfile" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
