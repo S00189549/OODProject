@@ -10,5 +10,7 @@
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("exercisedatabase.mdf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("exercisedatabase_log.ldf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model1.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model1.tt")]
 
 

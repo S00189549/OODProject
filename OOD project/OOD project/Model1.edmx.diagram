@@ -4,8 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="62b559cfb5674c65bc910caf4e11a8ef" Name="Diagram1">
-        <EntityTypeShape EntityType="ExerciseDatabaseModel.tbl_Exercise" Width="1.5" PointX="4.375" PointY="1.625" IsExpanded="true" />
+      <Diagram DiagramId="cfb3e52597a641b19aec4f6e47148903" Name="Diagram1">
+        <EntityTypeShape EntityType="ExerciseDatabaseModel.tbl_BodyPart" Width="2" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExerciseDatabaseModel.tbl_Exercises" Width="1.5" PointX="3" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExerciseDatabaseModel.tbl_Profiles" Width="1.5" PointX="1.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExerciseDatabaseModel.tbl_Workout" Width="1.5" PointX="6.25" PointY="3.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
