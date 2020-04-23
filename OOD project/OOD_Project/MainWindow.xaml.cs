@@ -23,7 +23,7 @@ namespace OOD_Project
         AdilsGymEntities db = new AdilsGymEntities();
 
         List<tbl_BodyPart> AllBodyparts = new List<tbl_BodyPart>();
-
+        List<tbl_Workout> currentWorkout = new List<tbl_Workout>();
 
         public MainWindow()
         {
@@ -87,6 +87,29 @@ namespace OOD_Project
                 result[i] = i+1;
             }
             return result;
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            tbl_Exercises selectedExercise = exerciseComboBox.SelectedItem as tbl_Exercises;
+            int selectedReps = repsComboBox.SelectedIndex + 1;
+            int selectedSets = setsComboBox.SelectedIndex + 1;
+
+
+            tbl_Workout exerciseToAdd = new tbl_Workout()
+            {
+                Name = selectedExercise.Name,
+                Reps = selectedReps,
+                Sets = selectedSets,
+                TUT = checkBoxTUT.IsChecked,
+                Pause = checkBoxPause.IsChecked,
+                C1_5xReps = checkBox1_5Reps.IsChecked
+            };
+
+            currentWorkout.Add(exerciseToAdd);
+
+            workoutBox.ItemsSource = currentWorkout;
+
         }
     }
 }

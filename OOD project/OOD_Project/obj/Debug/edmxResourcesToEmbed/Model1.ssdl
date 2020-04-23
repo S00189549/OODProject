@@ -32,6 +32,11 @@
     <Property Name="ExerciseID" Type="int" Nullable="false" />
     <Property Name="SaveDate" Type="datetime" Nullable="false" />
     <Property Name="ProfileID" Type="int" Nullable="false" />
+    <Property Name="Reps" Type="int" />
+    <Property Name="Sets" Type="int" />
+    <Property Name="TUT" Type="bit" />
+    <Property Name="Pause" Type="bit" />
+    <Property Name="1.5xReps" Type="bit" />
   </EntityType>
   <Association Name="FK_tbl_Exercises_ToBodyPart">
     <End Role="tbl_BodyPart" Type="Self.tbl_BodyPart" Multiplicity="1" />

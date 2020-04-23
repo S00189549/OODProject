@@ -10,4 +10,21 @@ namespace OOD_Project
    {
         public string Image { get { return Name + ".jpg"; } }
    }
+
+    partial class tbl_Workout
+    {
+        public string Name { get; set; }
+        public string Variations { get
+            {
+                string result = "";
+                if ((bool)TUT)
+                    result += "TUT\n";
+                if ((bool)Pause)
+                    result += "Pause\n";
+                if ((bool)Pause)
+                    result += "1.5Reps\n";
+                return result;
+            }
+        }
+    }
 }

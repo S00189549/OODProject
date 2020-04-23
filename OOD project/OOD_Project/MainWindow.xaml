@@ -6,6 +6,30 @@
         xmlns:local="clr-namespace:OOD_Project"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <DataTemplate x:Key="WorkoutListView">
+            <Grid x:Name="GridItem" Width="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="3" Text="{Binding Path=Name}" Margin="2" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Reps" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Reps}" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Sets" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Path= Sets}" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding Path=Variations}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.RowSpan="2"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="229*"/>
@@ -14,11 +38,8 @@
         <ComboBox x:Name="bodyPartComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="118,27,0,0" VerticalAlignment="Top" Width="107" Height="18" SelectionChanged="bodyPartComboBox_SelectionChanged"/>
         <ComboBox x:Name="exerciseComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="118,59,0,0" VerticalAlignment="Top" Width="107" Height="18" SelectionChanged="exerciseComboBox_SelectionChanged"/>
 
-        <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="257,224,0,0" VerticalAlignment="Top" Width="76"  Height="18"/>
-        <RadioButton x:Name="_1_5xRepsRadioButton" Content="1.5x Reps" HorizontalAlignment="Left" Margin="254,196,0,0" VerticalAlignment="Top" Width="127" Height="14"/>
-        <RadioButton x:Name="pauseRadioButton" Content="Pause " HorizontalAlignment="Left" Margin="254,166,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.133" Width="97" Height="15"/>
-        <RadioButton x:Name="timeUnderTensionRadioButton" Content="Time Under Tension" HorizontalAlignment="Left" Margin="254,138,0,0" VerticalAlignment="Top" Width="175" Height="14"/>
-        <Rectangle x:Name="workoutBox" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="188" Margin="42,88,0,0" Stroke="Black" VerticalAlignment="Top" Width="257" Grid.Column="1"/>
+        <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="257,224,0,0" VerticalAlignment="Top" Width="76"  Height="18" Click="addButton_Click"/>
+        <ListBox x:Name="workoutBox" ItemTemplate="{StaticResource ResourceKey=WorkoutListView}"  HorizontalAlignment="Left" Height="188" Margin="42,88,0,0"  VerticalAlignment="Top" Width="257" Grid.Column="1"/>
         <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="224,283,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" />
         <ComboBox x:Name="profileComboBox" HorizontalAlignment="Left" Margin="318,257,0,0" VerticalAlignment="Top" Width="111" Height="17"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="29,30,0,0" TextWrapping="Wrap" Text="Body Part" VerticalAlignment="Top"/>
@@ -32,5 +53,8 @@
         <!--<Image x:Name="ExerciseImage" HorizontalAlignment="Left" Height="271"  VerticalAlignment="Top" Width="230" Margin="10,138,0,0" Source="BenchPress.png"/>-->
         <ComboBox x:Name="repsComboBox" HorizontalAlignment="Left" Margin="296,27,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="setsComboBox" HorizontalAlignment="Left" Margin="296,59,0,0" VerticalAlignment="Top" Width="120"/>
+        <CheckBox x:Name="checkBoxTUT" Content="Time Under Tension" HorizontalAlignment="Left" Margin="253,146,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBoxPause" Content="Pause" HorizontalAlignment="Left" Margin="253,166,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox1_5Reps" Content="1.5x Reps" HorizontalAlignment="Left" Margin="253,186,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

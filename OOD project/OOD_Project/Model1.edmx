@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ExerciseDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ExerciseDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_BodyPart">
           <Key>
             <PropertyRef Name="Id" />
@@ -37,6 +37,11 @@
           <Property Name="ExerciseID" Type="int" Nullable="false" />
           <Property Name="SaveDate" Type="datetime" Nullable="false" />
           <Property Name="ProfileID" Type="int" Nullable="false" />
+          <Property Name="Reps" Type="int" />
+          <Property Name="Sets" Type="int" />
+          <Property Name="TUT" Type="bit" />
+          <Property Name="Pause" Type="bit" />
+          <Property Name="1.5xReps" Type="bit" />
         </EntityType>
         <Association Name="FK_tbl_Exercises_ToBodyPart">
           <End Role="tbl_BodyPart" Type="Self.tbl_BodyPart" Multiplicity="1" />
@@ -92,8 +97,7 @@
             <End Role="tbl_Workout" EntitySet="tbl_Workout" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ExerciseDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -135,6 +139,11 @@
           <Property Name="ProfileID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tbl_Exercises" Relationship="Self.FK_tbl_Workout_ToExercises" FromRole="tbl_Workout" ToRole="tbl_Exercises" />
           <NavigationProperty Name="tbl_Profiles" Relationship="Self.FK_tbl_Workout_ToProfile" FromRole="tbl_Workout" ToRole="tbl_Profiles" />
+          <Property Name="Reps" Type="Int32" />
+          <Property Name="Sets" Type="Int32" />
+          <Property Name="TUT" Type="Boolean" />
+          <Property Name="Pause" Type="Boolean" />
+          <Property Name="C1_5xReps" Type="Boolean" />
         </EntityType>
         <Association Name="FK_tbl_Exercises_ToBodyPart">
           <End Role="tbl_BodyPart" Type="Self.tbl_BodyPart" Multiplicity="1" />
@@ -226,6 +235,11 @@
           <EntitySetMapping Name="tbl_Workout">
             <EntityTypeMapping TypeName="ExerciseDatabaseModel.tbl_Workout">
               <MappingFragment StoreEntitySet="tbl_Workout">
+                <ScalarProperty Name="C1_5xReps" ColumnName="1.5xReps" />
+                <ScalarProperty Name="Pause" ColumnName="Pause" />
+                <ScalarProperty Name="TUT" ColumnName="TUT" />
+                <ScalarProperty Name="Sets" ColumnName="Sets" />
+                <ScalarProperty Name="Reps" ColumnName="Reps" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ExerciseID" ColumnName="ExerciseID" />
                 <ScalarProperty Name="SaveDate" ColumnName="SaveDate" />

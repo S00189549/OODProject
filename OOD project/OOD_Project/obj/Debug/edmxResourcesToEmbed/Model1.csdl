@@ -38,6 +38,11 @@
     <Property Name="ProfileID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="tbl_Exercises" Relationship="Self.FK_tbl_Workout_ToExercises" FromRole="tbl_Workout" ToRole="tbl_Exercises" />
     <NavigationProperty Name="tbl_Profiles" Relationship="Self.FK_tbl_Workout_ToProfile" FromRole="tbl_Workout" ToRole="tbl_Profiles" />
+    <Property Name="Reps" Type="Int32" />
+    <Property Name="Sets" Type="Int32" />
+    <Property Name="TUT" Type="Boolean" />
+    <Property Name="Pause" Type="Boolean" />
+    <Property Name="C1_5xReps" Type="Boolean" />
   </EntityType>
   <Association Name="FK_tbl_Exercises_ToBodyPart">
     <End Role="tbl_BodyPart" Type="Self.tbl_BodyPart" Multiplicity="1" />

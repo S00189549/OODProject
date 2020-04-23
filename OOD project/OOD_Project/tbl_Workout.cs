@@ -18,6 +18,11 @@ namespace OOD_Project
         public int ExerciseID { get; set; }
         public System.DateTime SaveDate { get; set; }
         public int ProfileID { get; set; }
+        public Nullable<int> Reps { get; set; }
+        public Nullable<int> Sets { get; set; }
+        public Nullable<bool> TUT { get; set; }
+        public Nullable<bool> Pause { get; set; }
+        public Nullable<bool> C1_5xReps { get; set; }
     
         public virtual tbl_Exercises tbl_Exercises { get; set; }
         public virtual tbl_Profiles tbl_Profiles { get; set; }

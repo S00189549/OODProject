@@ -31,6 +31,11 @@
     <EntitySetMapping Name="tbl_Workout">
       <EntityTypeMapping TypeName="ExerciseDatabaseModel.tbl_Workout">
         <MappingFragment StoreEntitySet="tbl_Workout">
+          <ScalarProperty Name="C1_5xReps" ColumnName="1.5xReps" />
+          <ScalarProperty Name="Pause" ColumnName="Pause" />
+          <ScalarProperty Name="TUT" ColumnName="TUT" />
+          <ScalarProperty Name="Sets" ColumnName="Sets" />
+          <ScalarProperty Name="Reps" ColumnName="Reps" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ExerciseID" ColumnName="ExerciseID" />
           <ScalarProperty Name="SaveDate" ColumnName="SaveDate" />
