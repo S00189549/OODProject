@@ -45,7 +45,7 @@
         <DataGrid x:Name="workoutBox" HorizontalAlignment="Left" Height="188" Margin="42,88,0,0"  VerticalAlignment="Top" Width="257" Grid.Column="1"/>
         <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="257,224,0,0" VerticalAlignment="Top" Width="76"  Height="18" Click="addButton_Click"/>
         <!--<ListBox x:Name="workoutBox" ItemTemplate="{StaticResource ResourceKey=WorkoutListView}"  HorizontalAlignment="Left" Height="188" Margin="42,88,0,0"  VerticalAlignment="Top" Width="257" Grid.Column="1"/>-->
-        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="224,283,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" />
+        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="224,283,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="saveButton_Click" />
         <ComboBox x:Name="profileComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="318,257,0,0" VerticalAlignment="Top" Width="111" Height="17"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="29,30,0,0" TextWrapping="Wrap" Text="Body Part" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="29,59,0,0" TextWrapping="Wrap" Text="Exercise" VerticalAlignment="Top"/>
@@ -60,5 +60,6 @@
         <CheckBox x:Name="checkBoxTUT" Content="Time Under Tension" HorizontalAlignment="Left" Margin="253,146,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="checkBoxPause" Content="Pause" HorizontalAlignment="Left" Margin="253,166,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="checkBox1_5Reps" Content="1.5x Reps" HorizontalAlignment="Left" Margin="253,186,0,0" VerticalAlignment="Top"/>
+        
     </Grid>
 </Window>

@@ -22,9 +22,11 @@ namespace OOD_Project
     public partial class MainWindow : Window
     {
         AdilsGymEntities db = new AdilsGymEntities();
+        Random rand = new Random();
 
         List<tbl_BodyPart> AllBodyparts = new List<tbl_BodyPart>();
         ObservableCollection<tbl_Workout> currentWorkout = new ObservableCollection<tbl_Workout>();
+
 
         public MainWindow()
         {
@@ -49,6 +51,11 @@ namespace OOD_Project
 
             profileComboBox.ItemsSource = query1.ToArray();
             profileComboBox.SelectedIndex = 0;
+
+
+
+            //dataGrid.ItemsSource = (from wo in db.tbl_Workout
+            //                        select wo).ToList();
 
             //populate the workout listView
             //workoutBox.ItemsSource = currentWorkout;
@@ -76,11 +83,11 @@ namespace OOD_Project
 
         private void exerciseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            tbl_Exercises selectedExercise= exerciseComboBox.SelectedItem as tbl_Exercises;
+            tbl_Exercises selectedExercise = exerciseComboBox.SelectedItem as tbl_Exercises;
 
-            repsComboBox.SelectedIndex = selectedExercise.Reps -1;
+            repsComboBox.SelectedIndex = selectedExercise.Reps - 1;
 
-            setsComboBox.SelectedIndex = selectedExercise.Sets -1;
+            setsComboBox.SelectedIndex = selectedExercise.Sets - 1;
 
 
             //ExerciseImage.Source = new BitmapImage(new Uri(imageFileName, UriKind.Relative));
@@ -93,13 +100,14 @@ namespace OOD_Project
             int[] result = new int[max];
             for (int i = 0; i < result.Length; i++)
             {
-                result[i] = i+1;
+                result[i] = i + 1;
             }
             return result;
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            saveButton.IsEnabled = true;
             tbl_Exercises selectedExercise = exerciseComboBox.SelectedItem as tbl_Exercises;
             int selectedReps = repsComboBox.SelectedIndex + 1;
             int selectedSets = setsComboBox.SelectedIndex + 1;
@@ -107,6 +115,7 @@ namespace OOD_Project
 
             tbl_Workout exerciseToAdd = new tbl_Workout()
             {
+                ExerciseID = selectedExercise.Id,
                 Name = selectedExercise.Name,
                 Reps = selectedReps,
                 Sets = selectedSets,
@@ -132,6 +141,23 @@ namespace OOD_Project
         {
             int index = workoutBox.SelectedIndex;
             currentWorkout.RemoveAt(index);
+        }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            saveButton.IsEnabled = false;
+            tbl_Profiles selectedProfile = profileComboBox.SelectedItem as tbl_Profiles;
+
+            for (int i = 0; i < currentWorkout.Count; i++)
+            {
+                currentWorkout[i].SaveDate = DateTime.Now;
+                currentWorkout[i].ProfileID = selectedProfile.Id;
+                currentWorkout[i].Id = selectedProfile.tbl_Workout.Count + i + 1;
+                db.tbl_Workout.Add(currentWorkout[i]);
+            }
+            workoutBox.ItemsSource = null;
+            currentWorkout.Clear();
+            db.SaveChanges();
         }
     }
 }
