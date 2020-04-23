@@ -43,6 +43,12 @@ namespace OOD_Project
             repsComboBox.ItemsSource = GetNumbers(25);
             setsComboBox.ItemsSource = GetNumbers(10);
 
+            var query1 = from profile in db.tbl_Profiles
+                         select profile;
+
+            profileComboBox.ItemsSource = query1.ToArray();
+            profileComboBox.SelectedIndex = 0;
+
         }
 
         private void bodyPartComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

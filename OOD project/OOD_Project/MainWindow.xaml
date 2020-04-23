@@ -41,7 +41,7 @@
         <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="257,224,0,0" VerticalAlignment="Top" Width="76"  Height="18" Click="addButton_Click"/>
         <ListBox x:Name="workoutBox" ItemTemplate="{StaticResource ResourceKey=WorkoutListView}"  HorizontalAlignment="Left" Height="188" Margin="42,88,0,0"  VerticalAlignment="Top" Width="257" Grid.Column="1"/>
         <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="224,283,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" />
-        <ComboBox x:Name="profileComboBox" HorizontalAlignment="Left" Margin="318,257,0,0" VerticalAlignment="Top" Width="111" Height="17"/>
+        <ComboBox x:Name="profileComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="318,257,0,0" VerticalAlignment="Top" Width="111" Height="17"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="29,30,0,0" TextWrapping="Wrap" Text="Body Part" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="29,59,0,0" TextWrapping="Wrap" Text="Exercise" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="256,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"><Run Text="Reps"/></TextBlock>
@@ -49,7 +49,6 @@
         <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="257,257,0,0" TextWrapping="Wrap" Text="Profile" VerticalAlignment="Top" Width="46" Height="15"/>
         <Button x:Name="deleteButton" Content="Delete" HorizontalAlignment="Left" Margin="353,224,0,0" VerticalAlignment="Top" Width="76" Height="18"/>
         <TextBlock x:Name="textBlock5" Grid.Column="1" HorizontalAlignment="Left" Margin="42,33,0,0" TextWrapping="Wrap" Text="Workout" VerticalAlignment="Top" RenderTransformOrigin="0.02,1"/>
-        <Button x:Name="button" Content="Add Exercise" HorizontalAlignment="Left" Margin="253,97,0,0" VerticalAlignment="Top" Width="75"/>
         <!--<Image x:Name="ExerciseImage" HorizontalAlignment="Left" Height="271"  VerticalAlignment="Top" Width="230" Margin="10,138,0,0" Source="BenchPress.png"/>-->
         <ComboBox x:Name="repsComboBox" HorizontalAlignment="Left" Margin="296,27,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="setsComboBox" HorizontalAlignment="Left" Margin="296,59,0,0" VerticalAlignment="Top" Width="120"/>
