@@ -21,7 +21,7 @@ namespace OOD_Project
                     result += "TUT\n";
                 if ((bool)Pause)
                     result += "Pause\n";
-                if ((bool)Pause)
+                if ((bool)C1_5xReps)
                     result += "1.5Reps\n";
                 return result;
             }

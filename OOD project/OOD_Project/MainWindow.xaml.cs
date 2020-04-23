@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace OOD_Project
         AdilsGymEntities db = new AdilsGymEntities();
 
         List<tbl_BodyPart> AllBodyparts = new List<tbl_BodyPart>();
-        List<tbl_Workout> currentWorkout = new List<tbl_Workout>();
+        ObservableCollection<tbl_Workout> currentWorkout = new ObservableCollection<tbl_Workout>();
 
         public MainWindow()
         {
@@ -49,6 +50,8 @@ namespace OOD_Project
             profileComboBox.ItemsSource = query1.ToArray();
             profileComboBox.SelectedIndex = 0;
 
+            //populate the workout listView
+            //workoutBox.ItemsSource = currentWorkout;
         }
 
         private void bodyPartComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -113,9 +116,22 @@ namespace OOD_Project
             };
 
             currentWorkout.Add(exerciseToAdd);
+            workoutBox.ItemsSource = (from w in currentWorkout
+                                      select new
+                                      {
+                                          Name = w.Name,
+                                          Reps = w.Reps,
+                                          Sets = w.Sets,
+                                          TUT = w.TUT,
+                                          Pause = w.Pause,
+                                          _1_5X_Reps = w.C1_5xReps
+                                      }).ToArray();
+        }
 
-            workoutBox.ItemsSource = currentWorkout;
-
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            int index = workoutBox.SelectedIndex;
+            currentWorkout.RemoveAt(index);
         }
     }
 }
