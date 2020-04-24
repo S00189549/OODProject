@@ -5,61 +5,84 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOD_Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="White"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="Black"
+     FontFamily="{DynamicResource MaterialDesignFont}">
 
-    <Window.Resources>
-        <DataTemplate x:Key="WorkoutListView">
-            <Grid x:Name="GridItem" Width="Auto">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+
+    <TabControl >
+        <TabItem Header="Add Workouts">
+            <Grid Margin="10"  >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="4" Text="{Binding Path=Name}" Margin="2" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Reps" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Reps}" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Row="1" Grid.Column="2" Text="Sets" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Path= Sets}" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Row="0" Grid.Column="4" Text="TUT" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                <TextBlock Grid.Row="0" Grid.Column="5" Text="Pause" VerticalAlignment="Top" HorizontalAlignment="Center" />
-                <TextBlock Grid.Row="0" Grid.Column="6" Text="1.5X Reps" VerticalAlignment="Top" HorizontalAlignment="Right" />
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ComboBox Grid.Row="0" Grid.Column="0" x:Name="bodyPartComboBox" HorizontalAlignment="Center"  VerticalAlignment="Center"  SelectionChanged="bodyPartComboBox_SelectionChanged"
+                  DisplayMemberPath="Name" materialDesign:HintAssist.Hint="Body Parts" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -22" 
+                  MinWidth="150" ItemsSource="{Binding LongListToTestComboVirtualization}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+
+                <ComboBox Grid.Row="1" Grid.Column="0" x:Name="exerciseComboBox" DisplayMemberPath="Name" HorizontalAlignment="Center"  VerticalAlignment="Center" MinWidth="150" 
+                  materialDesign:HintAssist.Hint="Exercises" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -22" 
+                  ItemsSource="{Binding LongListToTestComboVirtualization}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                  SelectionChanged="exerciseComboBox_SelectionChanged"/>
+
+
+                <ComboBox Grid.Row ="0" Grid.Column="1"  x:Name="repsComboBox" HorizontalAlignment="Center"  VerticalAlignment="Center" MinWidth="150"
+                   materialDesign:HintAssist.Hint="Reps" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -22" 
+                  ItemsSource="{Binding LongListToTestComboVirtualization}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+
+                <ComboBox Grid.Row ="1" Grid.Column="1"  x:Name="setsComboBox" HorizontalAlignment="Center"  VerticalAlignment="Center" MinWidth="150"
+                   materialDesign:HintAssist.Hint="Sets" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -22" 
+                  ItemsSource="{Binding LongListToTestComboVirtualization}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+
+                <CheckBox Grid.Column="1" Grid.Row="2" x:Name="checkBoxTUT" Content="Time Under Tension" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="1" Grid.Row="3" x:Name="checkBoxPause" Content="Pause" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="1" Grid.Row="4"  x:Name="checkBox1_5Reps" Content="1.5x Reps" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Button Grid.Row="5" Grid.Column="1"  x:Name="deleteButton" Content="Delete" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="76" Click="deleteButton_Click"/>
+                <Button Grid.Row="5" Grid.Column="1" x:Name="addButton" Content="Add" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="76"  Click="addButton_Click"/>
+
+                <ComboBox Grid.Row="0" Grid.Column="2" x:Name="profileComboBox" DisplayMemberPath="Name" HorizontalAlignment="Center"  VerticalAlignment="Center" MinWidth="150" 
+                   materialDesign:HintAssist.Hint="Profiles" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -22" 
+                  ItemsSource="{Binding LongListToTestComboVirtualization}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+
+
+                <DataGrid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="5" 
+                  x:Name="workoutBox" />
+
+                <Button Grid.Row="7" Grid.Column="3" x:Name="saveButton" Content="Save" HorizontalAlignment="Center"  VerticalAlignment="Center" MinWidth="125"  Click="saveButton_Click" />
+
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.RowSpan="5" Margin="10">
+                    <Image x:Name="ExerciseImage" Stretch="Fill" />
+                </StackPanel>
             </Grid>
-        </DataTemplate>
-    </Window.Resources>
-    <Grid >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="229*"/>
-            <ColumnDefinition Width="167*"/>
-        </Grid.ColumnDefinitions>
-        <ComboBox x:Name="bodyPartComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="118,27,0,0" VerticalAlignment="Top" Width="107" Height="18" SelectionChanged="bodyPartComboBox_SelectionChanged"/>
-        <ComboBox x:Name="exerciseComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="118,59,0,0" VerticalAlignment="Top" Width="107" Height="18" SelectionChanged="exerciseComboBox_SelectionChanged"/>
-        <DataGrid x:Name="workoutBox" HorizontalAlignment="Left" Height="188" Margin="42,88,0,0"  VerticalAlignment="Top" Width="257" Grid.Column="1"/>
-        <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="257,224,0,0" VerticalAlignment="Top" Width="76"  Height="18" Click="addButton_Click"/>
-        <!--<ListBox x:Name="workoutBox" ItemTemplate="{StaticResource ResourceKey=WorkoutListView}"  HorizontalAlignment="Left" Height="188" Margin="42,88,0,0"  VerticalAlignment="Top" Width="257" Grid.Column="1"/>-->
-        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="224,283,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="saveButton_Click" />
-        <ComboBox x:Name="profileComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="318,257,0,0" VerticalAlignment="Top" Width="111" Height="17"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="29,30,0,0" TextWrapping="Wrap" Text="Body Part" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="29,59,0,0" TextWrapping="Wrap" Text="Exercise" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="256,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"><Run Text="Reps"/></TextBlock>
-        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="256,59,0,0" TextWrapping="Wrap" Text="Sets" VerticalAlignment="Top" Width="31"/>
-        <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="257,257,0,0" TextWrapping="Wrap" Text="Profile" VerticalAlignment="Top" Width="46" Height="15"/>
-        <Button x:Name="deleteButton" Content="Delete" HorizontalAlignment="Left" Margin="353,224,0,0" VerticalAlignment="Top" Width="76" Height="18" Click="deleteButton_Click"/>
-        <TextBlock x:Name="textBlock5" Grid.Column="1" HorizontalAlignment="Left" Margin="42,33,0,0" TextWrapping="Wrap" Text="Workout" VerticalAlignment="Top" RenderTransformOrigin="0.02,1"/>
-        <!--<Image x:Name="ExerciseImage" HorizontalAlignment="Left" Height="271"  VerticalAlignment="Top" Width="230" Margin="10,138,0,0" Source="BenchPress.png"/>-->
-        <ComboBox x:Name="repsComboBox" HorizontalAlignment="Left" Margin="296,27,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="setsComboBox" HorizontalAlignment="Left" Margin="296,59,0,0" VerticalAlignment="Top" Width="120"/>
-        <CheckBox x:Name="checkBoxTUT" Content="Time Under Tension" HorizontalAlignment="Left" Margin="253,146,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="checkBoxPause" Content="Pause" HorizontalAlignment="Left" Margin="253,166,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="checkBox1_5Reps" Content="1.5x Reps" HorizontalAlignment="Left" Margin="253,186,0,0" VerticalAlignment="Top"/>
+        </TabItem>
         
-    </Grid>
+        <TabItem Header="Workout History" Loaded="TabItem_Loaded">
+
+            <Grid Margin="10">
+                <DataGrid x:Name="AllWorkout" />
+            </Grid>
+        </TabItem>
+    </TabControl>
 </Window>

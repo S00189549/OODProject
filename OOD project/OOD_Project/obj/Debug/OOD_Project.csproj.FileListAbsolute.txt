@@ -20,3 +20,9 @@ C:\Users\Adil\Documents\GitHub\OODProject\OOD project\OOD_Project\obj\Debug\OOD_
 C:\Users\Adil\Documents\GitHub\OODProject\OOD project\OOD_Project\obj\Debug\OOD_Project.csproj.CopyComplete
 C:\Users\Adil\Documents\GitHub\OODProject\OOD project\OOD_Project\obj\Debug\OOD_Project.exe
 C:\Users\Adil\Documents\GitHub\OODProject\OOD project\OOD_Project\obj\Debug\OOD_Project.pdb
+C:\Users\Adil\Documents\GitHub\OODProject\OOD project\OOD_Project\bin\Debug\MaterialDesignColors.dll
+C:\Users\Adil\Documents\GitHub\OODProject\OOD project\OOD_Project\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Adil\Documents\GitHub\OODProject\OOD project\OOD_Project\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Adil\Documents\GitHub\OODProject\OOD project\OOD_Project\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Adil\Documents\GitHub\OODProject\OOD project\OOD_Project\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Adil\Documents\GitHub\OODProject\OOD project\OOD_Project\obj\Debug\App.baml

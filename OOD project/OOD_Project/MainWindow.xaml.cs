@@ -53,9 +53,7 @@ namespace OOD_Project
             profileComboBox.SelectedIndex = 0;
 
 
-
-            //dataGrid.ItemsSource = (from wo in db.tbl_Workout
-            //                        select wo).ToList();
+            //AllWorkout.ItemsSource = (from wo in db.tbl_Workout select wo).ToList();
 
             //populate the workout listView
             //workoutBox.ItemsSource = currentWorkout;
@@ -85,13 +83,14 @@ namespace OOD_Project
         {
             tbl_Exercises selectedExercise = exerciseComboBox.SelectedItem as tbl_Exercises;
 
+            if (selectedExercise == null) return;
+
             repsComboBox.SelectedIndex = selectedExercise.Reps - 1;
 
             setsComboBox.SelectedIndex = selectedExercise.Sets - 1;
 
+            ExerciseImage.Source = new BitmapImage(new Uri($"\\Images\\{selectedExercise.Image}", UriKind.Relative));
 
-            //ExerciseImage.Source = new BitmapImage(new Uri(imageFileName, UriKind.Relative));
-            //ImageSource IS = ExerciseImage.Source;
         }
 
 
@@ -108,6 +107,9 @@ namespace OOD_Project
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             saveButton.IsEnabled = true;
+            deleteButton.IsEnabled = true;
+
+
             tbl_Exercises selectedExercise = exerciseComboBox.SelectedItem as tbl_Exercises;
             int selectedReps = repsComboBox.SelectedIndex + 1;
             int selectedSets = setsComboBox.SelectedIndex + 1;
@@ -135,12 +137,32 @@ namespace OOD_Project
                                           Pause = w.Pause,
                                           _1_5X_Reps = w.C1_5xReps
                                       }).ToArray();
+
+
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
+
             int index = workoutBox.SelectedIndex;
+            if (index < 0) return;
             currentWorkout.RemoveAt(index);
+            workoutBox.ItemsSource = (from w in currentWorkout
+                                      select new
+                                      {
+                                          Name = w.Name,
+                                          Reps = w.Reps,
+                                          Sets = w.Sets,
+                                          TUT = w.TUT,
+                                          Pause = w.Pause,
+                                          _1_5X_Reps = w.C1_5xReps
+                                      }).ToArray();
+
+            if (workoutBox.Items.Count <= 0)
+            {
+                deleteButton.IsEnabled = false;
+                saveButton.IsEnabled = false;
+            }
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
@@ -150,14 +172,46 @@ namespace OOD_Project
 
             for (int i = 0; i < currentWorkout.Count; i++)
             {
-                currentWorkout[i].SaveDate = DateTime.Now;
+                currentWorkout[i].SaveDate = DateTime.Now.Date;
                 currentWorkout[i].ProfileID = selectedProfile.Id;
-                currentWorkout[i].Id = selectedProfile.tbl_Workout.Count + i + 1;
+                currentWorkout[i].Id = selectedProfile.tbl_Workout.Count + i + 1 * rand.Next(1, 2);
                 db.tbl_Workout.Add(currentWorkout[i]);
             }
             workoutBox.ItemsSource = null;
             currentWorkout.Clear();
             db.SaveChanges();
+            GettAllWorkout();
+
+        }
+
+        private void GettAllWorkout()
+        {
+            var query = from wo in db.tbl_Workout
+                        join ex in db.tbl_Exercises on wo.ExerciseID equals ex.Id
+                        join pro in db.tbl_Profiles on wo.ProfileID equals pro.Id
+                        select new 
+                        {
+                            Profile = pro.Name,
+                            Name = ex.Name,
+                            Reps = wo.Reps,
+                            Sets = wo.Sets,
+                            TUT = wo.TUT,
+                            Pause = wo.Pause,
+                            _1_5X_Reps = wo.C1_5xReps,
+                            wo.SaveDate
+                        };
+
+
+
+            AllWorkout.ItemsSource = query.ToList();
+        }
+
+        private void TabItem_Loaded(object sender, RoutedEventArgs e)
+        {
+            GettAllWorkout();
         }
     }
+
+
+
 }

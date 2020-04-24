@@ -8,12 +8,13 @@ namespace OOD_Project
 {
    partial class tbl_Exercises
    {
-        public string Image { get { return Name + ".jpg"; } }
+        public string Image { get { return Name + ".png"; } }
    }
 
     partial class tbl_Workout
     {
         public string Name { get; set; }
+
         public string Variations { get
             {
                 string result = "";
