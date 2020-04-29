@@ -9,7 +9,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="White"
      TextElement.FontWeight="Regular"
-     TextElement.FontSize="13"
+     TextElement.FontSize="14"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
      Background="Black"
@@ -72,12 +72,12 @@
 
                 <Button Grid.Row="7" Grid.Column="3" x:Name="saveButton" Content="Save" HorizontalAlignment="Center"  VerticalAlignment="Center" MinWidth="125"  Click="saveButton_Click" />
 
-                <StackPanel Grid.Row="2" Grid.Column="0" Grid.RowSpan="5" Margin="10">
-                    <Image x:Name="ExerciseImage" Stretch="Fill" />
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.RowSpan="6" Margin="21,10,21,13">
+                    <Image x:Name="ExerciseImage"  Stretch="UniformToFill" />
                 </StackPanel>
             </Grid>
         </TabItem>
-        
+
         <TabItem Header="Workout History" Loaded="TabItem_Loaded">
 
             <Grid Margin="10">

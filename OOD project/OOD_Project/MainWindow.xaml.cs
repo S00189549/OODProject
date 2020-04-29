@@ -138,7 +138,6 @@ namespace OOD_Project
                                           _1_5X_Reps = w.C1_5xReps
                                       }).ToArray();
 
-
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)

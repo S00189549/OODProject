@@ -19,11 +19,11 @@ namespace OOD_Project
             {
                 string result = "";
                 if ((bool)TUT)
-                    result += "TUT\n";
+                    result += "T.U.T\n";
                 if ((bool)Pause)
                     result += "Pause\n";
                 if ((bool)C1_5xReps)
-                    result += "1.5Reps\n";
+                    result += "1.5 Reps\n";
                 return result;
             }
         }
